@@ -18,7 +18,7 @@ delimiter = '\s+'
 names = ['site',	'year',	'month', 'value']
 
 # Calling freq_generator function
-ouput = fg(url, skiprows, delimiter, names)
+ouput = fg.find_peaks_by_decade(url, skiprows, delimiter, names)
 
 # Print the number of peaks in each decade
 for decade, peaks in ouput.items():
