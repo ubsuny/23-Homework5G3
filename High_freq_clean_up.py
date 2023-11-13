@@ -28,7 +28,7 @@ time = pd.to_datetime(df[['year', 'month']].assign(day=1))
 co2_concentration = df['value']
 
 # Define the cutoff frequency and order for the low-pass filter
-cutoff_frequency = 0.07  # Adjust based on your data characteristics
+cutoff_frequency = 0.065  # Adjust based on your data characteristics
 order = 4  # Adjust based on the desired sharpness of the cutoff
 
 # Apply the low-pass filter
@@ -39,16 +39,17 @@ plt.figure(figsize=(10, 6))
 
 plt.subplot(2, 1, 1)
 plt.scatter(time, co2_concentration, label="Raw Data", s=5)  # 's' adjusts the size of the points
-plt.title("Raw CO2 Concentration vs. Time")
-plt.xlabel("Time")
-plt.ylabel("CO2 Concentration")
+plt.title("Raw CO2 Concentration(PPM) vs. Frequency/6months")
+plt.xlabel("Frequency/6 month")
+plt.ylabel("CO2 Concentration(PPM)")
 plt.legend()
 
 plt.subplot(2, 1, 2)
-plt.scatter(time, filtered_data, label="Filtered Data", s=5)  # 's' adjusts the size of the points
-plt.title("Filtered CO2 Concentration vs. Time")
-plt.xlabel("Time")
-plt.ylabel("CO2 Concentration")
+
+plt.scatter(time, filtered_data, label="Filtered Data", s=5, color='red')  # 's' adjusts the size of the points
+plt.title("Filtered CO2 Concentration(PPM) vs. Frequenccy/6months")
+plt.xlabel("Frequency/6 month")
+plt.ylabel("CO2 Concentration(PPM)")
 plt.legend()
 
 plt.tight_layout()
