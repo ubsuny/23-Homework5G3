@@ -3,7 +3,21 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import butter, filtfilt
 
-# Define the butter_lowpass_filter function as provided earlier
+# Define the butter_lowpass_filter function
+def butter_lowpass_filter(data, cutoff_frequency, sample_rate, order=4):
+  """Applies a low-pass filter to the given data using the scipy.signal.butter() and scipy.signal.filtfilt() functions.
+
+  Args:
+    data: A NumPy array containing the data to be filtered.
+    cutoff_frequency: The cutoff frequency of the filter in Hz.
+    sample_rate: The sample rate of the data in Hz.
+    order: The order of the filter.
+
+  Returns:
+    A NumPy array containing the filtered data.
+  """
+
+  return filtfilt(*butter(order, cutoff_frequency / (sample_rate / 2), btype='low'), data)
 
 # Load CO2 data using pandas
 url = "https://gml.noaa.gov/aftp/data/trace_gases/co2/flask/surface/txt/co2_mlo_surface-flask_1_ccgg_month.txt"
