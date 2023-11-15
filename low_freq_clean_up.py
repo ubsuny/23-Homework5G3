@@ -3,6 +3,25 @@ import numpy as np
 import pandas as pd
 from scipy.signal import butter, filtfilt
 
+def butter_lowpass_filter(data, cutoff, sample_rate, order=4):
+    """
+    Apply a low-pass Butterworth filter to the input data.
+
+    Parameters:
+    - data (array-like): The input data to be filtered.
+    - cutoff (float): The cutoff frequency of the filter.
+    - sample_rate (float): The sample rate of the input data.
+    - order (int, optional): The order of the filter. Defaults to 4.
+
+    Returns:
+    - array-like: The filtered data.
+    """
+    nyquist = 0.5 * sample_rate
+    normal_cutoff = cutoff / nyquist
+    b, a = butter(order, normal_cutoff, btype='low', analog=False)
+    y = filtfilt(b, a, data)
+    return y
+
 # Load CO2 data using pandas
 url = "https://gml.noaa.gov/aftp/data/trace_gases/co2/flask/surface/txt/co2_mlo_surface-flask_1_ccgg_month.txt"
 df = pd.read_csv(url, delimiter="\s+", skiprows=54, names=['site', 'year', 'month', 'value'])
