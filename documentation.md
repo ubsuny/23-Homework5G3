@@ -65,8 +65,7 @@ def print_peak_frequency(X):
     print('The peak frequency is', peak_frequency, 'per year')
 
 ```
-<img alt="image" src="
-https://github.com/ubsuny/23-Homework5G3/blob/main/fft_output.png?raw=true">
+<img alt="image" src="https://raw.githubusercontent.com/LinxuanHu/23-Homework5G3/main/fft_output.png">
 
 
 ## Clean up low frequency noise
@@ -107,11 +106,11 @@ def butter_lowpass_filter(data, cutoff, sample_rate, order=4):
 
 `main.py`
 
-<img alt="image" src="https://github.com/LinxuanHu/23-Homework5G3/main_lint.png?raw=true">
+<img alt="image" src="https://raw.githubusercontent.com/LinxuanHu/23-Homework5G3/main/main_lint.png">
 
 `low_freq_clean_up.py`
 
-<img alt="image" src="https://github.com/LinxuanHu/23-Homework5G3/low_freq_clean_lint.png?raw=true">
+<img alt="image" src="https://raw.githubusercontent.com/LinxuanHu/23-Homework5G3/main/low_freq_clean_lint.png">
 
 ## Unit test
 
