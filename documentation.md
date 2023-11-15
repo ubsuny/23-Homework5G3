@@ -8,7 +8,7 @@ We choose Ascension Island, United Kingdom (ASC) [3]
 https://gml.noaa.gov/aftp/data/trace_gases/co2/flask/surface/txt/co2_asc_surface-flask_1_ccgg_month.txt
 
 ## Library
-we use `NumPy` `pandas`
+we use `numpy` `pandas` `matplotlib` `freq_calc` `scipy`
 
 ## Calculates the actual frequency
 
@@ -114,7 +114,62 @@ def butter_lowpass_filter(data, cutoff, sample_rate, order=4):
 
 ## Unit test
 
+### Task 1
+```python
+import unittest
+import freq_calc
+from unittest.mock import patch
+from main import load_co2_data 
 
+class TestLoadCO2Data(unittest.TestCase):
+
+    @patch('your_script.pd.read_csv')
+    def test_load_co2_data_normal(self, mock_read_csv):
+        url = "https://gml.noaa.gov/aftp/data/trace_gases/co2/flask/surface/txt/co2_asc_surface-flask_1_ccgg_month.txt"
+        skiprows = 5
+        delimiter = ','
+        names = ['Date', 'CO2']
+        load_co2_data(url, skiprows, delimiter, names)
+        mock_read_csv.assert_called_with(url, skiprows=skiprows, delimiter=delimiter, names=names)
+
+    def test_load_co2_data_invalid_url(self):
+        pass
+
+if __name__ == '__main__':
+    unittest.main()
+
+```
+
+### Task 2
+
+```python
+
+import unittest
+import numpy as np
+import low_freq_clean_up
+from low_freq_clean_up import butter_lowpass_filter
+
+class TestButterLowpassFilter(unittest.TestCase):
+
+    def test_filter_with_valid_data(self):
+        data = np.array([0, 1, 2, 3, 4, 5])
+        cutoff = 2.0
+        sample_rate = 10
+        order = 4
+        filtered_data = butter_lowpass_filter(data, cutoff, sample_rate, order)
+
+    def test_filter_with_empty_data(self):
+        data = np.array([])
+        cutoff = 2.0
+        sample_rate = 10
+        order = 4
+        with self.assertRaises(ValueError):
+            butter_lowpass_filter(data, cutoff, sample_rate, order)
+
+if __name__ == '__main__':
+    unittest.main()
+
+```
 
 ## References
 

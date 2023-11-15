@@ -1,24 +1,21 @@
-# task 1
-
 import unittest
-from freq_calc import fft  # Replace with your actual function
+import freq_calc
+from unittest.mock import patch
+from main import load_co2_data 
 
-class TestFreqCalc(unittest.TestCase):
+class TestLoadCO2Data(unittest.TestCase):
 
-    def test_your_function_normal_case(self):
-        # Test for normal input
-        self.assertEqual(fft(), expected_output)
+    @patch('your_script.pd.read_csv')
+    def test_load_co2_data_normal(self, mock_read_csv):
+        url = "https://gml.noaa.gov/aftp/data/trace_gases/co2/flask/surface/txt/co2_asc_surface-flask_1_ccgg_month.txt"
+        skiprows = 5
+        delimiter = ','
+        names = ['Date', 'CO2']
+        load_co2_data(url, skiprows, delimiter, names)
+        mock_read_csv.assert_called_with(url, skiprows=skiprows, delimiter=delimiter, names=names)
 
-    def test_your_function_edge_case(self):
-        # Test for edge cases
+    def test_load_co2_data_invalid_url(self):
         pass
-
-    def test_your_function_error_handling(self):
-        # Test error handling
-        self.assertRaises(ExpectedException, your_function, error_input)
 
 if __name__ == '__main__':
     unittest.main()
-
-
-# task 2
