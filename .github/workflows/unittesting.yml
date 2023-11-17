@@ -18,4 +18,5 @@ jobs: # what should we do when it is run
     - name: Test with pytest
       run: |
         pip install pytest
-        pytest tests.py
+        pytest unittestTask1.py
+        pytest unittestTask2.py
