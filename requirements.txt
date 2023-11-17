@@ -1,1 +1,5 @@
 pytest
+pylint
+numpy
+pandas
+matplotlib
